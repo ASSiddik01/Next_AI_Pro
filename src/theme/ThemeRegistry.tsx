@@ -21,15 +21,15 @@ const themeOptions: ThemeOptions = {
     },
   },
   palette: {
-    background: {
-      default: "#000000",
-    },
-    primary: {
-      main: "#ddd",
-    },
-    text: {
-      primary: "#ffffff",
-    },
+    // background: {
+    //   default: "#000000",
+    // },
+    // primary: {
+    //   main: "#ddd",
+    // },
+    // text: {
+    //   primary: "#ffffff",
+    // },
   },
 };
 
