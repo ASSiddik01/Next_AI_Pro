@@ -1,21 +1,69 @@
 "use client";
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import MuiDrawer from "@mui/material/Drawer";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import { ChevronLeft } from "@mui/icons-material";
+import { mainListItems } from "@/components/ListItems";
 
-import Link from "next/link";
-import Image from "next/image";
+const drawerWidth: number = 240;
 
-export const Sidebar = () => {
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  "& .MuiDrawer-paper": {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    boxSizing: "border-box",
+    ...(!open && {
+      overflowX: "hidden",
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(7),
+      [theme.breakpoints.up("sm")]: {
+        width: theme.spacing(9),
+      },
+    }),
+  },
+}));
+
+export const Sidebar = ({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
   return (
-    <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
-      <div className="px-3 py-2 flex-1">
-        <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <div className="relative h-8 w-8 mr-4">
-            <Image fill alt="Logo" src="/logo.png" />
-          </div>
-        </Link>
-        <div className="space-y-1">
-          <h2>routes</h2>
-        </div>
-      </div>
-    </div>
+    <Drawer variant="permanent" open={open}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          px: [1],
+        }}
+      >
+        <h2>Logo</h2>
+        <IconButton onClick={toggleDrawer}>
+          <ChevronLeft />
+        </IconButton>
+      </Toolbar>
+      <Divider />
+      <List component="nav">{mainListItems}</List>
+    </Drawer>
   );
 };
