@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
-import { styled, createTheme } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,6 +11,10 @@ import Container from "@mui/material/Container";
 import { ChevronRight } from "@mui/icons-material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Sidebar } from "@/components/Sidebar";
+import moment from "moment";
+import logo from "@/assets/logo.png";
+import Image from 'next/image'
+import { UserButton } from "@clerk/nextjs";
 
 const drawerWidth: number = 240;
 
@@ -37,6 +40,8 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+
+
 export default function DashboardLayout({
   children,
 }: {
@@ -47,12 +52,25 @@ export default function DashboardLayout({
     setOpen(!open);
   };
 
+  // time and date
+  const date = moment().format("dddd, Do MMM YYYY");
+  let time = moment().format("h:mm:ss A");
+
+  const [cTime, setCTime] = React.useState("");
+  const updateTime = () => {
+    time = moment().format("h:mm:ss A");
+    setCTime(time);
+  };
+
+  setInterval(updateTime, 1000);
+
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar style={{ background: "#2E3B55" }} position="absolute" open={open}>
+      <AppBar style={{ background: "#090E30" }} position="absolute" open={open}>
         <Toolbar
+          style={{ padding: "0px 20px" }}
           sx={{
-            pr: "24px", // keep right padding when drawer closed
+            pr: "10px", // keep right padding when drawer closed
           }}
         >
           <Typography
@@ -61,7 +79,7 @@ export default function DashboardLayout({
               ...(open && { display: "none" }),
             }}
           >
-            test
+            <Image width={35} src={logo} alt="Logo" ></Image>
           </Typography>
           <IconButton
             edge="start"
@@ -73,7 +91,7 @@ export default function DashboardLayout({
               ...(open && { display: "none" }),
             }}
           >
-            <ChevronRight />
+            <ChevronRight className="text-[#259FD9] border border-[#259FD9] rounded-full" />
           </IconButton>
           <Typography
             component="h1"
@@ -82,12 +100,13 @@ export default function DashboardLayout({
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            <div className={`text-sm flex text-[#259FD9]  flex-col text-center`}>
+              <span> {date} </span>
+              <span> {cTime} </span>
+            </div>
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            <UserButton afterSignOutUrl="/" />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -105,8 +124,10 @@ export default function DashboardLayout({
         }}
       >
         <Toolbar />
-        <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
-          {children}
+        <Container className="bg-[#0d1441] py-3 md:py-6" maxWidth="xl">
+          <div className="bg-[#040928] rounded-lg p-4">
+            {children}
+          </div>
         </Container>
       </Box>
     </Box>
