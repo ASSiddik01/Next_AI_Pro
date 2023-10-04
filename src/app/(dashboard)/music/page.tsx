@@ -1,7 +1,9 @@
+
+import Heading from "@/components/Heading";
 const Music = () => {
-    return (
-        <div>Music</div>
-    )
+    return <>
+        <Heading title="Music" />
+    </>;
 }
 
 export default Music

@@ -1,7 +1,8 @@
+import Heading from "@/components/Heading";
 const Video = () => {
-    return (
-        <div>Video</div>
-    )
+    return <>
+        <Heading title="Video" />
+    </>;
 }
 
 export default Video

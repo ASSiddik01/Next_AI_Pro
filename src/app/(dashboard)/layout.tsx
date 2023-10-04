@@ -124,8 +124,8 @@ export default function DashboardLayout({
         }}
       >
         <Toolbar />
-        <Container className="bg-[#0d1441] py-3 md:py-6" maxWidth="xl">
-          <div className="bg-[#040928] rounded-lg p-4">
+        <Container style={{ padding: "15px", }} className="bg-[#0d1441]" maxWidth="xl">
+          <div style={{ height: `calc(100vh - 94px)` }} className="bg-[#040928] rounded-lg p-4">
             {children}
           </div>
         </Container>

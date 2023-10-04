@@ -1,7 +1,8 @@
+import Heading from "@/components/Heading";
 const Image = () => {
-    return (
-        <div>Image</div>
-    )
+    return <>
+        <Heading title="Image" />
+    </>;
 }
 
 export default Image

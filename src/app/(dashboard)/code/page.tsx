@@ -1,7 +1,8 @@
+import Heading from "@/components/Heading";
 const Code = () => {
-    return (
-        <div>Code</div>
-    )
+    return <>
+        <Heading title="Code" />
+    </>;
 }
 
 export default Code
