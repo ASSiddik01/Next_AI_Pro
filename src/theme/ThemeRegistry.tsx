@@ -37,9 +37,9 @@ const themeOptions: ThemeOptions = {
     // primary: {
     //   main: "#ddd",
     // },
-    // text: {
-    //   primary: "#ffffff",
-    // },
+    text: {
+      primary: "#ffffff",
+    },
   },
 };
 

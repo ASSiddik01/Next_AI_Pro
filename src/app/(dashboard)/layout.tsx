@@ -6,14 +6,12 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import { ChevronRight } from "@mui/icons-material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Sidebar } from "@/components/Sidebar";
 import moment from "moment";
 import logo from "@/assets/logo.png";
-import Image from 'next/image'
+import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 
 const drawerWidth: number = 240;
@@ -39,8 +37,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
-
 
 export default function DashboardLayout({
   children,
@@ -79,7 +75,7 @@ export default function DashboardLayout({
               ...(open && { display: "none" }),
             }}
           >
-            <Image width={35} src={logo} alt="Logo" ></Image>
+            <Image width={35} src={logo} alt="Logo"></Image>
           </Typography>
           <IconButton
             edge="start"
@@ -100,7 +96,9 @@ export default function DashboardLayout({
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            <div className={`text-sm flex text-[#259FD9]  flex-col text-center`}>
+            <div
+              className={`text-sm flex text-[#259FD9]  flex-col text-center`}
+            >
               <span> {date} </span>
               <span> {cTime} </span>
             </div>
@@ -124,8 +122,15 @@ export default function DashboardLayout({
         }}
       >
         <Toolbar />
-        <Container style={{ padding: "15px", }} className="bg-[#0d1441]" maxWidth="xl">
-          <div style={{ height: `calc(100vh - 94px)` }} className="bg-[#040928] rounded-lg p-4">
+        <Container
+          style={{ padding: "15px" }}
+          className="bg-[#0d1441]"
+          maxWidth="xl"
+        >
+          <div
+            style={{ height: `calc(100vh - 94px)` }}
+            className="bg-[#040928] rounded-lg p-4"
+          >
             {children}
           </div>
         </Container>
